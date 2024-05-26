@@ -15,6 +15,11 @@ const affiliateBodySchema = z.object({
   libraryId: z.number(),
 });
 
+const searchParamsSchema = z.object({
+  id: z.coerce.number().optional(),
+  lastName: z.string().min(3).max(50).optional(),
+});
+
 affiliatesRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -30,6 +35,35 @@ affiliatesRouter.get(
       },
     });
     res.status(200).json({ msg: `Total de socios: ${affiliatesTotal}`, affiliates });
+  })
+);
+
+affiliatesRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { id, lastName } = searchParamsSchema.parse(req.query);
+
+    let affiliates;
+    if (id !== undefined) {
+      affiliates = await prisma.affiliate.findMany({
+        where: { affiliateId: id },
+      });
+    } else if (lastName !== undefined) {
+      affiliates = await prisma.affiliate.findMany({
+        where: { lastName: { contains: lastName, mode: "insensitive" } },
+        orderBy: { affiliateId: "asc" },
+      });
+    } else {
+      send(res).badRequest("Introduce al menos un criterio de busqueda");
+      return;
+    }
+
+    if (affiliates.length === 0) {
+      send(res).notFound();
+      return;
+    }
+
+    send(res).ok({ affiliates });
   })
 );
 
