@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import librariesRouter from "./libraries";
 import affiliatesRouter from "./affiliates";
+import { defaultErrorHandler } from "./errors";
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 
 app.use("/libraries", librariesRouter);
 app.use("/affiliates", affiliatesRouter);
+
+app.use(defaultErrorHandler);
 
 app.get("/", async (req, res) => {
   res.status(200).json({ ok: "true", message: "hello F" });

@@ -12,7 +12,7 @@ const libraryBodySchema = z.object({
   address: z.string().min(5).max(50),
 });
 
-librariesRouter.get("/", async (req, res) => {
+librariesRouter.get("/", async (req, res, next) => {
   try {
     const totalLibraries = await prisma.library.count();
     const libraries = await prisma.library.findMany({
@@ -24,12 +24,12 @@ librariesRouter.get("/", async (req, res) => {
       libraries,
     });
   } catch (e) {
-    send(res).internalError("Could not get the libraries");
+    next(e);
   }
 });
 
 //get library by id
-librariesRouter.get("/:id", async (req, res) => {
+librariesRouter.get("/:id", async (req, res, next) => {
   try {
     const { id: libraryId } = idParamsSchema.parse(req.params);
 
@@ -39,10 +39,7 @@ librariesRouter.get("/:id", async (req, res) => {
     });
     send(res).ok(library);
   } catch (e: any) {
-    if (e.name === "NotFoundError") {
-      return send(res).notFound();
-    }
-    send(res).internalError("Could not create the library.");
+    next(e);
   }
 });
 
@@ -50,7 +47,7 @@ librariesRouter.get("/:id", async (req, res) => {
 //TODO
 
 //introduce a library
-librariesRouter.post("/", async (req, res) => {
+librariesRouter.post("/", async (req, res, next) => {
   try {
     const data = libraryBodySchema.parse(req.body);
 
@@ -60,12 +57,11 @@ librariesRouter.post("/", async (req, res) => {
       library,
     });
   } catch (e) {
-    console.log(e);
-    send(res).internalError("Could not post the library");
+    next(e);
   }
 });
 
-librariesRouter.put("/:id", async (req, res) => {
+librariesRouter.put("/:id", async (req, res, next) => {
   try {
     const { id: libraryId } = idParamsSchema.parse(req.params);
     const bodyCheck = libraryBodySchema.parse(req.body);
@@ -77,15 +73,15 @@ librariesRouter.put("/:id", async (req, res) => {
 
     send(res).ok(updatedLibrary);
   } catch (e) {
-    send(res).internalError("Could not add/replace the library");
+    next(e);
   }
 });
 
-librariesRouter.delete("/:id", async (req, res) => {
+librariesRouter.delete("/:id", async (req, res, next) => {
   try {
     send(res).notImplemented();
   } catch (e) {
-    send(res).internalError("Could not delete the library");
+    next(e);
   }
 });
 
