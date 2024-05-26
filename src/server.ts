@@ -1,7 +1,7 @@
+import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import cors from "cors";
-import { prisma } from "./db";
+import librariesRouter from "./libraries";
 
 const app = express();
 
@@ -11,15 +11,10 @@ app.use(morgan("dev"));
 //Manage headers
 app.use(express.json());
 
+app.use("/libraries", librariesRouter);
+
 app.get("/", async (req, res) => {
   res.status(200).json({ ok: "true", message: "hello F" });
-});
-
-app.get("/libraries", async (req, res) => {
-  const libraries = await prisma.library.findMany({
-    orderBy: { libraryId: "asc" },
-  });
-  res.status(200).json({ libraries });
 });
 
 const { PORT } = process.env;
