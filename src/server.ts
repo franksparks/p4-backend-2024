@@ -6,6 +6,7 @@ import { defaultErrorHandler } from "./errors";
 import librariesRouter from "./libraries";
 import authorsRouter from "./authors";
 import booksRouter from "./books";
+import borrowingsRouter from "./borrowings";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/affiliates", affiliatesRouter);
 app.use("/authors", authorsRouter);
 app.use("/books", booksRouter);
+app.use("/borrowings", borrowingsRouter);
 app.use("/libraries", librariesRouter);
 
 app.use(defaultErrorHandler);
