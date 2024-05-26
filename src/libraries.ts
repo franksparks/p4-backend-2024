@@ -19,6 +19,24 @@ librariesRouter.get("/", async (req, res) => {
 });
 
 //get library by id
+librariesRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const library = await prisma.library.findUniqueOrThrow({
+      where: { libraryId: Number(id) },
+      select: { libraryId: true, name: true, city: true },
+    });
+    res.status(200).json({ library });
+  } catch (e: any) {
+    res
+      .status(500)
+      .json({
+        name: e.name,
+        message: e.message,
+        error: e.toString(),
+      });
+  }
+});
 
 //get library by name
 
