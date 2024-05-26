@@ -29,7 +29,7 @@ librariesRouter.get("/:id", async (req, res) => {
     res.status(200).json({ library });
   } catch (e: any) {
     if (e.name === "NotFoundError") {
-      return res.status(400).json({ message: "Not found" });
+      return res.status(404).json({ message: "Not found" });
     }
     res.status(500).json({
       name: e.name,
