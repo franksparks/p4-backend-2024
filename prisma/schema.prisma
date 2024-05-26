@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Library {
+  libraryId  Int         @id @default(autoincrement())
+  name       String
+  city       String
+  address    String
+  books      Book[]
+  affiliates Affiliate[]
+}
+
+model Book {
+  bookId    Int         @id @default(autoincrement())
+  title     String
+  pages     Int
+  available Boolean     @default(true)
+  libraryId Int
+  library   Library     @relation(fields: [libraryId], references: [libraryId])
+  authorId  Int
+  author    Author      @relation(fields: [authorId], references: [authorId])
+  Borrowing Borrowing[]
+}
+
+//Socios de la biblioteca
+model Affiliate {
+  affiliateId Int         @id @default(autoincrement())
+  name        String
+  lastName    String
+  email       String
+  city        String
+  address     String?
+  libraryId   Int
+  library     Library     @relation(fields: [libraryId], references: [libraryId])
+  borrowings  Borrowing[]
+}
+
+model Author {
+  authorId   Int    @id @default(autoincrement())
+  name       String
+  lastName   String
+  birthPlace String
+  books      Book[]
+}
+
+//Préstamos de libros
+model Borrowing {
+  borrowId    Int       @id @default(autoincrement())
+  active      Boolean   @default(true)
+  affiliateId Int
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [affiliateId])
+  bookId      Int
+  book        Book      @relation(fields: [bookId], references: [bookId])
+}
