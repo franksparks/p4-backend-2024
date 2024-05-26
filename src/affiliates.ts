@@ -54,13 +54,11 @@ affiliatesRouter.get(
         orderBy: { affiliateId: "asc" },
       });
     } else {
-      send(res).badRequest("Introduce al menos un criterio de busqueda");
-      return;
+      return send(res).badRequest("Introduce al menos un criterio de busqueda");
     }
 
     if (affiliates.length === 0) {
       send(res).notFound();
-      return;
     }
 
     send(res).ok({ affiliates });
