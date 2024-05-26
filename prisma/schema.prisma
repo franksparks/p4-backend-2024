@@ -51,7 +51,7 @@ model Author {
 
 //Préstamos de libros
 model Borrowing {
-  borrowId    Int       @id @default(autoincrement())
+  borrowingId Int       @id @default(autoincrement())
   active      Boolean   @default(true)
   affiliateId Int
   affiliate   Affiliate @relation(fields: [affiliateId], references: [affiliateId])
