@@ -15,8 +15,11 @@ const affiliateBodySchema = z.object({
   libraryId: z.number(),
 });
 
-affiliatesRouter.get("/", async (req, res) => {
-  try {
+affiliatesRouter.get(
+  "/",
+  catchErrors(async (req, res) => {
+    const affiliatesTotal = await prisma.author.count();
+
     const affiliates = await prisma.affiliate.findMany({
       orderBy: { affiliateId: "asc" },
       select: {
@@ -26,11 +29,9 @@ affiliatesRouter.get("/", async (req, res) => {
         libraryId: true,
       },
     });
-    res.status(200).json({ affiliates });
-  } catch (e) {
-    res.status(500).json("Internal server error");
-  }
-});
+    res.status(200).json({ msg: `Total de socios: ${affiliatesTotal}`, affiliates });
+  })
+);
 
 affiliatesRouter.get(
   "/:id",
