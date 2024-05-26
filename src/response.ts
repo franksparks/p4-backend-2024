@@ -11,18 +11,14 @@ enum HttpStatusCode {
 export const send = (res: ExpressResponse) => {
   return {
     ok: (data: any) => res.status(HttpStatusCode.OK).json(data),
-    createdOk: (data: any) =>
-      res.status(HttpStatusCode.Created).send(data),
-    notFound: () =>
-      res.status(HttpStatusCode.NotFound).send("Not found"),
+    createdOk: (data: any) => res.status(HttpStatusCode.Created).send(data),
+    notFound: () => res.status(HttpStatusCode.NotFound).send("Not found"),
     badRequest: (msg: string) => {
       res.status(HttpStatusCode.BadRequest).send(msg);
     },
     internalError: (msg: string) =>
       res.status(HttpStatusCode.InternalServerError).json(msg),
     notImplemented: () =>
-      res
-        .status(HttpStatusCode.NotImplemented)
-        .send("Not implemented."),
+      res.status(HttpStatusCode.NotImplemented).send("Not implemented."),
   };
 };
