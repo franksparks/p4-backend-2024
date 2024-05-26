@@ -16,6 +16,10 @@ const bookBodySchema = z.object({
   authorId: z.coerce.number(),
 });
 
+const titleQuerySchema = z.object({
+  title: z.string().min(1).max(50).optional(),
+});
+
 booksRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -33,6 +37,28 @@ booksRouter.get(
       msg: `Total de libros: ${booksTotal}`,
       books,
     });
+  })
+);
+
+booksRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { title } = titleQuerySchema.parse(req.query);
+
+    const books = await prisma.book.findMany({
+      where: {
+        title: {
+          contains: title,
+        },
+      },
+      orderBy: { bookId: "asc" },
+    });
+
+    if (books.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({ books });
   })
 );
 
