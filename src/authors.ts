@@ -43,7 +43,7 @@ authorsRouter.post(
   "/",
   catchErrors(async (req, res) => {
     const data = authorBodySchema.parse(req.body);
-    const author = await prisma.author.create({ data: data });
+    const author = await prisma.author.create({ data });
     send(res).createdOk({
       msg: `Id del autor introducido: ${author.authorId}`,
       author,
