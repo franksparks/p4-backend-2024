@@ -1,6 +1,9 @@
+import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import cors from "cors";
+import affiliatesRouter from "./affiliates";
+import { defaultErrorHandler } from "./errors";
+import librariesRouter from "./libraries";
 
 const app = express();
 
@@ -9,6 +12,11 @@ app.use(cors());
 app.use(morgan("dev"));
 //Manage headers
 app.use(express.json());
+
+app.use("/libraries", librariesRouter);
+app.use("/affiliates", affiliatesRouter);
+
+app.use(defaultErrorHandler);
 
 app.get("/", async (req, res) => {
   res.status(200).json({ ok: "true", message: "hello F" });
