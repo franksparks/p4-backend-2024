@@ -1,4 +1,4 @@
-import type { ErrorRequestHandler } from "express";
+import type { ErrorRequestHandler, RequestHandler } from "express";
 import { ZodError } from "zod";
 import { send } from "./response";
 
@@ -37,3 +37,13 @@ export const defaultErrorHandler: ErrorRequestHandler = (err, req, res, next) =>
       return send(res).internalError(`Internal error.`);
   }
 };
+
+export const catchErrors =
+  (myHandler: RequestHandler): RequestHandler =>
+  async (req, res, next) => {
+    try {
+      await myHandler(req, res, next);
+    } catch (e: any) {
+      next(e);
+    }
+  };

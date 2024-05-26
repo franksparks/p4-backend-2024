@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import { prisma } from "./db";
+import { catchErrors } from "./errors";
 import { send } from "./response";
 
 const librariesRouter = Router();
@@ -12,8 +13,9 @@ const libraryBodySchema = z.object({
   address: z.string().min(5).max(50),
 });
 
-librariesRouter.get("/", async (req, res, next) => {
-  try {
+librariesRouter.get(
+  "/",
+  catchErrors(async (req, res) => {
     const totalLibraries = await prisma.library.count();
     const libraries = await prisma.library.findMany({
       orderBy: { libraryId: "asc" },
@@ -23,14 +25,13 @@ librariesRouter.get("/", async (req, res, next) => {
       msg: `Total de bibliotecas: ${totalLibraries}`,
       libraries,
     });
-  } catch (e) {
-    next(e);
-  }
-});
+  })
+);
 
 //get library by id
-librariesRouter.get("/:id", async (req, res, next) => {
-  try {
+librariesRouter.get(
+  "/:id",
+  catchErrors(async (req, res) => {
     const { id: libraryId } = idParamsSchema.parse(req.params);
 
     const library = await prisma.library.findUniqueOrThrow({
@@ -38,17 +39,16 @@ librariesRouter.get("/:id", async (req, res, next) => {
       select: { libraryId: true, name: true, city: true },
     });
     send(res).ok(library);
-  } catch (e: any) {
-    next(e);
-  }
-});
+  })
+);
 
 //get library by name
 //TODO
 
 //introduce a library
-librariesRouter.post("/", async (req, res, next) => {
-  try {
+librariesRouter.post(
+  "/",
+  catchErrors(async (req, res) => {
     const data = libraryBodySchema.parse(req.body);
 
     const library = await prisma.library.create({ data });
@@ -56,13 +56,12 @@ librariesRouter.post("/", async (req, res, next) => {
       msg: `Id de la biblioteca introducida: ${library.libraryId}`,
       library,
     });
-  } catch (e) {
-    next(e);
-  }
-});
+  })
+);
 
-librariesRouter.put("/:id", async (req, res, next) => {
-  try {
+librariesRouter.put(
+  "/:id",
+  catchErrors(async (req, res) => {
     const { id: libraryId } = idParamsSchema.parse(req.params);
     const bodyCheck = libraryBodySchema.parse(req.body);
 
@@ -72,17 +71,14 @@ librariesRouter.put("/:id", async (req, res, next) => {
     });
 
     send(res).ok(updatedLibrary);
-  } catch (e) {
-    next(e);
-  }
-});
+  })
+);
 
-librariesRouter.delete("/:id", async (req, res, next) => {
-  try {
+librariesRouter.delete(
+  "/:id",
+  catchErrors(async (req, res) => {
     send(res).notImplemented();
-  } catch (e) {
-    next(e);
-  }
-});
+  })
+);
 
 export default librariesRouter;
