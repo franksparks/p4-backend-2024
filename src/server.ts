@@ -5,6 +5,7 @@ import affiliatesRouter from "./affiliates";
 import { defaultErrorHandler } from "./errors";
 import librariesRouter from "./libraries";
 import authorsRouter from "./authors";
+import booksRouter from "./books";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/affiliates", affiliatesRouter);
 app.use("/authors", authorsRouter);
+app.use("/books", booksRouter);
 app.use("/libraries", librariesRouter);
 
 app.use(defaultErrorHandler);
