@@ -16,13 +16,13 @@ const libraryBodySchema = z.object({
 librariesRouter.get(
   "/",
   catchErrors(async (req, res) => {
-    const totalLibraries = await prisma.library.count();
+    const librariesTotal = await prisma.library.count();
     const libraries = await prisma.library.findMany({
       orderBy: { libraryId: "asc" },
       select: { libraryId: true, name: true, city: true },
     });
     send(res).ok({
-      msg: `Total de bibliotecas: ${totalLibraries}`,
+      msg: `Total de bibliotecas: ${librariesTotal}`,
       libraries,
     });
   })
@@ -51,7 +51,7 @@ librariesRouter.post(
   catchErrors(async (req, res) => {
     const data = libraryBodySchema.parse(req.body);
 
-    const library = await prisma.library.create({ data });
+    const library = await prisma.library.create({ data: data });
     send(res).createdOk({
       msg: `Id de la biblioteca introducida: ${library.libraryId}`,
       library,

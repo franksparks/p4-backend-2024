@@ -4,6 +4,7 @@ import morgan from "morgan";
 import affiliatesRouter from "./affiliates";
 import { defaultErrorHandler } from "./errors";
 import librariesRouter from "./libraries";
+import authorsRouter from "./authors";
 
 const app = express();
 
@@ -13,8 +14,9 @@ app.use(morgan("dev"));
 //Manage headers
 app.use(express.json());
 
-app.use("/libraries", librariesRouter);
 app.use("/affiliates", affiliatesRouter);
+app.use("/authors", authorsRouter);
+app.use("/libraries", librariesRouter);
 
 app.use(defaultErrorHandler);
 
