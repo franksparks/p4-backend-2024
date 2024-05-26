@@ -51,7 +51,7 @@ librariesRouter.post(
   catchErrors(async (req, res) => {
     const data = libraryBodySchema.parse(req.body);
 
-    const library = await prisma.library.create({ data: data });
+    const library = await prisma.library.create({ data });
     send(res).createdOk({
       msg: `Id de la biblioteca introducida: ${library.libraryId}`,
       library,
