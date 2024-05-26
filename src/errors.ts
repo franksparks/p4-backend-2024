@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler } from "express";
-import { send } from "./response";
 import { ZodError } from "zod";
+import { send } from "./response";
 
 const zodErrorMessage = (err: ZodError) => {
   const [firstIssue] = err.issues;

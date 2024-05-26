@@ -1,9 +1,9 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import librariesRouter from "./libraries";
 import affiliatesRouter from "./affiliates";
 import { defaultErrorHandler } from "./errors";
+import librariesRouter from "./libraries";
 
 const app = express();
 
