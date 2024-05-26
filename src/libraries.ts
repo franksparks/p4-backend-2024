@@ -50,7 +50,6 @@ librariesRouter.get(
 
     if (libraries.length === 0) {
       send(res).notFound();
-      return;
     }
 
     send(res).ok({ libraries });
