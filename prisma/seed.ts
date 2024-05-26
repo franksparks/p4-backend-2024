@@ -99,7 +99,7 @@ async function main() {
   const affiliateOne = await prisma.affiliate.create({
     data: {
       name: "One",
-      lastName: "Affiliate_1",
+      lastName: "Affiliate 1",
       email: "aff__1__@library.com",
       city: "Barcelona",
       address: "Gran de Gràcia, 1",
@@ -109,7 +109,7 @@ async function main() {
   const affiliateTwo = await prisma.affiliate.create({
     data: {
       name: "Two",
-      lastName: "Affiliate_2",
+      lastName: "Affiliate 2",
       email: "aff__2__@library.com",
       city: "Madrid",
       address: "Fuencarral, 23",
@@ -119,7 +119,7 @@ async function main() {
   const affiliateThree = await prisma.affiliate.create({
     data: {
       name: "Three",
-      lastName: "Affiliate_3",
+      lastName: "Affiliate 3",
       email: "aff__3__@library.com",
       city: "Manzanares",
       address: "Libertad, 23",
@@ -129,7 +129,7 @@ async function main() {
   const affiliateFour = await prisma.affiliate.create({
     data: {
       name: "Four",
-      lastName: "Affiliate_4",
+      lastName: "Affiliate 4",
       email: "aff__4__@library.com",
       city: "Vitoria",
       address: "Plaza de la Virgen Blanca, 3",
@@ -139,7 +139,7 @@ async function main() {
   const affiliateFive = await prisma.affiliate.create({
     data: {
       name: "Five",
-      lastName: "Affiliate_5",
+      lastName: "Affiliate 5",
       email: "aff__5__@library.com",
       city: "Santiago de Compostela",
       address: "Praza da Inmaculada, 5",
@@ -149,7 +149,7 @@ async function main() {
   const affiliateSix = await prisma.affiliate.create({
     data: {
       name: "Six",
-      lastName: "Affiliate_6",
+      lastName: "Affiliate 6",
       email: "aff__6__@library.com",
       city: "Barcelona",
       libraryId: 1,
@@ -158,7 +158,7 @@ async function main() {
   const affiliateSeven = await prisma.affiliate.create({
     data: {
       name: "Seven",
-      lastName: "Affiliate_7",
+      lastName: "Affiliate 7",
       email: "aff__7__@library.com",
       city: "Madrid",
       libraryId: 2,
@@ -167,7 +167,7 @@ async function main() {
   const affiliateEight = await prisma.affiliate.create({
     data: {
       name: "Eight",
-      lastName: "Affiliate_8",
+      lastName: "Affiliate 8",
       email: "aff__8__@library.com",
       city: "Manzanares",
       libraryId: 3,
@@ -176,7 +176,7 @@ async function main() {
   const affiliateNine = await prisma.affiliate.create({
     data: {
       name: "Nine",
-      lastName: "Affiliate_9",
+      lastName: "Affiliate 9",
       email: "aff__9__@library.com",
       city: "Vitoria",
       libraryId: 4,
@@ -185,7 +185,7 @@ async function main() {
   const affiliateTen = await prisma.affiliate.create({
     data: {
       name: "Ten",
-      lastName: "Affiliate_10",
+      lastName: "Affiliate 10",
       email: "aff__10__@library.com",
       city: "Santiago de Compostela",
       libraryId: 5,
