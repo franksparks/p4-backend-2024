@@ -1,7 +1,11 @@
 {
   "name": "p4-backend-2024",
-  "module": "index.ts",
+  "module": "src/server.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun --hot src/server.ts",
+    "start": "NODE_ENV=production bun src/server.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/cors": "^2.8.17",
