@@ -28,13 +28,14 @@ librariesRouter.get("/:id", async (req, res) => {
     });
     res.status(200).json({ library });
   } catch (e: any) {
-    res
-      .status(500)
-      .json({
-        name: e.name,
-        message: e.message,
-        error: e.toString(),
-      });
+    if (e.name === "NotFoundError") {
+      return res.status(400).json({ message: "Not found" });
+    }
+    res.status(500).json({
+      name: e.name,
+      message: e.message,
+      error: e.toString(),
+    });
   }
 });
 
