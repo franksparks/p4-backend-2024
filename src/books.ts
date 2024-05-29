@@ -16,6 +16,12 @@ const bookBodySchema = z.object({
   authorId: z.coerce.number(),
 });
 
+const searchParamsSchema = z.object({
+  authorId: z.coerce.number().optional(),
+  libraryId: z.coerce.number().optional(),
+  title: z.string().min(3).max(50).optional(),
+});
+
 booksRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -33,6 +39,37 @@ booksRouter.get(
       msg: `Total de libros: ${booksTotal}`,
       books,
     });
+  })
+);
+
+booksRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { authorId, libraryId, title } = searchParamsSchema.parse(req.query);
+
+    let books;
+    if (authorId !== undefined) {
+      books = await prisma.book.findMany({
+        where: { authorId: authorId },
+      });
+    } else if (libraryId !== undefined) {
+      books = await prisma.book.findMany({
+        where: { libraryId: libraryId },
+      });
+    } else if (title !== undefined) {
+      books = await prisma.book.findMany({
+        where: { title: { contains: title, mode: "insensitive" } },
+        orderBy: { bookId: "asc" },
+      });
+    } else {
+      return send(res).badRequest("Introduce al menos un criterio de busqueda");
+    }
+
+    if (books.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({ msg: `Total de libros: ${books.length}`, books });
   })
 );
 

@@ -14,6 +14,10 @@ const authorBodySchema = z.object({
   birthPlace: z.string().min(3).max(100),
 });
 
+const lastNameQuerySchema = z.object({
+  lastName: z.string().min(1).max(50).optional(),
+});
+
 authorsRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -25,6 +29,28 @@ authorsRouter.get(
       msg: `Total de autores: ${authorsTotal}`,
       authors,
     });
+  })
+);
+
+authorsRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { lastName } = lastNameQuerySchema.parse(req.query);
+
+    const authors = await prisma.author.findMany({
+      where: {
+        lastName: {
+          contains: lastName,
+        },
+      },
+      orderBy: { authorId: "asc" },
+    });
+
+    if (authors.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({ authors });
   })
 );
 

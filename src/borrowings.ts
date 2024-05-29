@@ -14,6 +14,11 @@ const borrowingBodySchema = z.object({
   bookId: z.coerce.number(),
 });
 
+const searchParamsSchema = z.object({
+  bookId: z.coerce.number().optional(),
+  affiliateId: z.coerce.number().optional(),
+});
+
 borrowingsRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -22,13 +27,85 @@ borrowingsRouter.get(
       orderBy: { borrowingId: "asc" },
     });
     send(res).ok({
-      msg: `Total de bibliotecas: ${borrowingsTotal}`,
+      msg: `Total de prestamos en el historico: ${borrowingsTotal}`,
       borrowings,
     });
   })
 );
 
-//get library by id
+borrowingsRouter.get(
+  "/active",
+  catchErrors(async (req, res) => {
+    const borrowings = await prisma.borrowing.findMany({
+      where: { active: true },
+      orderBy: { borrowingId: "asc" },
+    });
+    send(res).ok({
+      msg: `Total de prestamos activos: ${borrowings.length}`,
+      borrowings,
+    });
+  })
+);
+
+borrowingsRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { bookId, affiliateId } = searchParamsSchema.parse(req.query);
+
+    let borrowings;
+    if (bookId !== undefined) {
+      borrowings = await prisma.borrowing.findMany({
+        where: { bookId: bookId },
+      });
+    } else if (affiliateId !== undefined) {
+      borrowings = await prisma.borrowing.findMany({
+        where: { affiliateId: affiliateId },
+      });
+    } else {
+      return send(res).badRequest("Introduce al menos un criterio de busqueda");
+    }
+
+    if (borrowings.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({
+      msg: `Total de préstamos del socio ${affiliateId}: ${borrowings.length}`,
+      borrowings,
+    });
+  })
+);
+
+borrowingsRouter.get(
+  "/active/search",
+  catchErrors(async (req, res) => {
+    const { bookId, affiliateId } = searchParamsSchema.parse(req.query);
+
+    let borrowings;
+    if (bookId !== undefined) {
+      borrowings = await prisma.borrowing.findMany({
+        where: { bookId: bookId, active: true },
+      });
+    } else if (affiliateId !== undefined) {
+      borrowings = await prisma.borrowing.findMany({
+        where: { affiliateId: affiliateId, active: true },
+      });
+    } else {
+      return send(res).badRequest("Introduce al menos un criterio de busqueda");
+    }
+
+    if (borrowings.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({
+      affiliate: `Socio: ${affiliateId}`,
+      acticeBorrowings: `Total de préstamos activos: ${borrowings.length}`,
+      borrowings,
+    });
+  })
+);
+
 borrowingsRouter.get(
   "/:id",
   catchErrors(async (req, res) => {
@@ -36,7 +113,6 @@ borrowingsRouter.get(
 
     const borrowing = await prisma.borrowing.findUniqueOrThrow({
       where: { borrowingId },
-      select: { active: true },
     });
     send(res).ok(borrowing.active);
   })
@@ -54,7 +130,14 @@ borrowingsRouter.post(
 
     if (available) {
       //Obtener prestamos por socio
-      // Un afi no puede tener mas de 3 prestamos activos.
+      const data = borrowingBodySchema.parse(req.body);
+      const activeBorrowings = await prisma.borrowing.findMany({
+        where: { active: true, affiliateId: data.affiliateId },
+      });
+      // Un affiliate no puede tener mas de 3 prestamos activos.
+      if (activeBorrowings.length >= 3) {
+        return send(res).badRequest(`Affiliate cannot borrow more books.`);
+      }
 
       const borrowing = await prisma.borrowing.create({ data });
 
@@ -76,7 +159,30 @@ borrowingsRouter.post(
 borrowingsRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
-    send(res).notImplemented();
+    const { id: bookId } = idParamsSchema.parse(req.params);
+
+    //Compruebo que el libro esta en prestamo
+    const { available } = await prisma.book.findUniqueOrThrow({ where: { bookId } });
+
+    if (available) {
+      return send(res).badRequest(
+        "El libro no está en prestamo, así que no se puede devolver."
+      );
+    }
+    const borrowing = await prisma.borrowing.findFirstOrThrow({
+      where: { bookId: bookId },
+    });
+
+    const updatedBorrowing = await prisma.borrowing.update({
+      where: { borrowingId: borrowing.borrowingId },
+      data: { active: false },
+    });
+
+    const updatedBook = await prisma.book.update({
+      where: { bookId },
+      data: { available: true },
+    });
+    send(res).ok("Libro devuelto.");
   })
 );
 

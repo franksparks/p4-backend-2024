@@ -7,10 +7,15 @@ import { send } from "./response";
 const librariesRouter = Router();
 
 const idParamsSchema = z.object({ id: z.coerce.number() });
+
 const libraryBodySchema = z.object({
   name: z.string().min(3).max(50),
   city: z.string().min(5).max(50),
   address: z.string().min(5).max(50),
+});
+
+const nameQuerySchema = z.object({
+  name: z.string().min(1).max(50).optional(),
 });
 
 librariesRouter.get(
@@ -28,6 +33,29 @@ librariesRouter.get(
   })
 );
 
+librariesRouter.get(
+  "/search",
+  catchErrors(async (req, res) => {
+    const { name } = nameQuerySchema.parse(req.query);
+
+    const libraries = await prisma.library.findMany({
+      where: {
+        name: {
+          contains: name,
+        },
+      },
+      orderBy: { libraryId: "asc" },
+      select: { libraryId: true, name: true, city: true },
+    });
+
+    if (libraries.length === 0) {
+      send(res).notFound();
+    }
+
+    send(res).ok({ libraries });
+  })
+);
+
 //get library by id
 librariesRouter.get(
   "/:id",
@@ -41,9 +69,6 @@ librariesRouter.get(
     send(res).ok(library);
   })
 );
-
-//get library by name
-//TODO
 
 //introduce a library
 librariesRouter.post(

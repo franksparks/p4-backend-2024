@@ -13,9 +13,7 @@ export const send = (res: ExpressResponse) => {
     ok: (data: any) => res.status(HttpStatusCode.OK).json(data),
     createdOk: (data: any) => res.status(HttpStatusCode.Created).send(data),
     notFound: () => res.status(HttpStatusCode.NotFound).send("Element not found"),
-    badRequest: (msg: string) => {
-      res.status(HttpStatusCode.BadRequest).send(msg);
-    },
+    badRequest: (msg: string) => res.status(HttpStatusCode.BadRequest).send(msg),
     internalError: (msg: string) =>
       res.status(HttpStatusCode.InternalServerError).json(msg),
     notImplemented: () =>
