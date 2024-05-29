@@ -15,16 +15,21 @@ const affiliateBodySchema = z.object({
   libraryId: z.number(),
 });
 
-const searchParamsSchema = z.object({
-  id: z.coerce.number().optional(),
+const updateAffiliateBodySchema = z.object({
+  name: z.string().min(3).max(50).optional(),
+  lastName: z.string().min(5).max(50).optional(),
+  email: z.string().email().optional(),
+  city: z.string().min(3).max(50).optional(),
+  libraryId: z.number().optional(),
+});
+
+const lastNameSchema = z.object({
   lastName: z.string().min(3).max(50).optional(),
 });
 
 affiliatesRouter.get(
   "/",
   catchErrors(async (req, res) => {
-    const affiliatesTotal = await prisma.author.count();
-
     const affiliates = await prisma.affiliate.findMany({
       orderBy: { affiliateId: "asc" },
       select: {
@@ -34,34 +39,25 @@ affiliatesRouter.get(
         libraryId: true,
       },
     });
-    res.status(200).json({ msg: `Total de socios: ${affiliatesTotal}`, affiliates });
+    res.status(200).json({ msg: `Total de socios: ${affiliates.length}`, affiliates });
   })
 );
 
 affiliatesRouter.get(
   "/search",
   catchErrors(async (req, res) => {
-    const { id, lastName } = searchParamsSchema.parse(req.query);
+    const { lastName } = lastNameSchema.parse(req.query);
 
     let affiliates;
-    if (id !== undefined) {
-      affiliates = await prisma.affiliate.findMany({
-        where: { affiliateId: id },
-      });
-    } else if (lastName !== undefined) {
+    if (lastName !== undefined) {
       affiliates = await prisma.affiliate.findMany({
         where: { lastName: { contains: lastName, mode: "insensitive" } },
         orderBy: { affiliateId: "asc" },
       });
     } else {
-      return send(res).badRequest("Introduce al menos un criterio de busqueda");
+      return send(res).badRequest("Introduce al menos un criterio de búsqueda");
     }
-
-    if (affiliates.length === 0) {
-      send(res).notFound();
-    }
-
-    send(res).ok({ affiliates });
+    affiliates.length === 0 ? send(res).notFound() : send(res).ok({ affiliates });
   })
 );
 
@@ -85,7 +81,7 @@ affiliatesRouter.post(
 
     const affiliate = await prisma.affiliate.create({ data });
     send(res).createdOk({
-      msg: `Id de la biblioteca introducida: ${affiliate.libraryId}`,
+      msg: `Id del socio introducido: ${affiliate.affiliateId}`,
       affiliate,
     });
   })
@@ -95,14 +91,17 @@ affiliatesRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
     const { id: affiliateId } = idParamsSchema.parse(req.params);
-    const bodyCheck = affiliateBodySchema.parse(req.body);
+    const bodyCheck = updateAffiliateBodySchema.parse(req.body);
 
     const updatedAffiliate = await prisma.affiliate.update({
       where: { affiliateId },
       data: bodyCheck,
     });
 
-    send(res).ok(updatedAffiliate);
+    send(res).ok({
+      msg: `Información del socio actualizada correctamente.`,
+      updatedAffiliate,
+    });
   })
 );
 

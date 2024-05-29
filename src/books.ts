@@ -1,8 +1,8 @@
 import { Router } from "express";
+import { optional, z } from "zod";
 import { prisma } from "./db";
 import { catchErrors } from "./errors";
 import { send } from "./response";
-import { number, z } from "zod";
 
 const booksRouter = Router();
 
@@ -22,12 +22,19 @@ const searchParamsSchema = z.object({
   title: z.string().min(3).max(50).optional(),
 });
 
+const uopdateBookBodySchema = z.object({
+  title: z.string().min(3).max(50).optional(),
+  pages: z.number().optional(),
+  available: z.boolean().optional(),
+  libraryId: z.coerce.number().optional(),
+  authorId: z.coerce.number().optional(),
+});
+
 booksRouter.get(
   "/",
   catchErrors(async (req, res) => {
-    const booksTotal = await prisma.book.count();
     const books = await prisma.book.findMany({
-      orderBy: { libraryId: "asc" },
+      orderBy: { bookId: "asc" },
       select: {
         bookId: true,
         title: true,
@@ -36,7 +43,7 @@ booksRouter.get(
       },
     });
     send(res).ok({
-      msg: `Total de libros: ${booksTotal}`,
+      msg: `Total de libros: ${books.length}`,
       books,
     });
   })
@@ -62,14 +69,12 @@ booksRouter.get(
         orderBy: { bookId: "asc" },
       });
     } else {
-      return send(res).badRequest("Introduce al menos un criterio de busqueda");
+      return send(res).badRequest("Introduce al menos un criterio de búsqueda");
     }
 
-    if (books.length === 0) {
-      send(res).notFound();
-    }
-
-    send(res).ok({ msg: `Total de libros: ${books.length}`, books });
+    books.length === 0
+      ? send(res).notFound()
+      : send(res).ok({ msg: `Total de libros encontrados: ${books.length}`, books });
   })
 );
 
@@ -109,14 +114,17 @@ booksRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
     const { id: bookId } = idParamsSchema.parse(req.params);
-    const bodyCheck = bookBodySchema.parse(req.body);
+    const bodyCheck = uopdateBookBodySchema.parse(req.body);
 
     const updatedBook = await prisma.book.update({
       where: { bookId },
       data: bodyCheck,
     });
 
-    send(res).ok(updatedBook);
+    send(res).ok({
+      msg: `Información del libro actualizada correctamente.`,
+      updatedBook,
+    });
   })
 );
 

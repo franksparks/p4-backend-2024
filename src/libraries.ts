@@ -13,6 +13,11 @@ const libraryBodySchema = z.object({
   city: z.string().min(5).max(50),
   address: z.string().min(5).max(50),
 });
+const updateLibraryBodySchema = z.object({
+  name: z.string().min(3).max(50).optional(),
+  city: z.string().min(5).max(50).optional(),
+  address: z.string().min(5).max(50).optional(),
+});
 
 const nameQuerySchema = z.object({
   name: z.string().min(1).max(50).optional(),
@@ -21,13 +26,12 @@ const nameQuerySchema = z.object({
 librariesRouter.get(
   "/",
   catchErrors(async (req, res) => {
-    const librariesTotal = await prisma.library.count();
     const libraries = await prisma.library.findMany({
       orderBy: { libraryId: "asc" },
       select: { libraryId: true, name: true, city: true },
     });
     send(res).ok({
-      msg: `Total de bibliotecas: ${librariesTotal}`,
+      msg: `Total de bibliotecas: ${libraries.length}`,
       libraries,
     });
   })
@@ -39,20 +43,12 @@ librariesRouter.get(
     const { name } = nameQuerySchema.parse(req.query);
 
     const libraries = await prisma.library.findMany({
-      where: {
-        name: {
-          contains: name,
-        },
-      },
+      where: { name: { contains: name } },
       orderBy: { libraryId: "asc" },
       select: { libraryId: true, name: true, city: true },
     });
 
-    if (libraries.length === 0) {
-      send(res).notFound();
-    }
-
-    send(res).ok({ libraries });
+    libraries.length === 0 ? send(res).notFound() : send(res).ok({ libraries });
   })
 );
 
@@ -88,14 +84,17 @@ librariesRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
     const { id: libraryId } = idParamsSchema.parse(req.params);
-    const bodyCheck = libraryBodySchema.parse(req.body);
+    const bodyCheck = updateLibraryBodySchema.parse(req.body);
 
     const updatedLibrary = await prisma.library.update({
       where: { libraryId },
       data: bodyCheck,
     });
 
-    send(res).ok(updatedLibrary);
+    send(res).ok({
+      msg: `Información de la biblioteca actualizada correctamente.`,
+      updatedLibrary,
+    });
   })
 );
 

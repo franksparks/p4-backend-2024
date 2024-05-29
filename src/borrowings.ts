@@ -22,12 +22,11 @@ const searchParamsSchema = z.object({
 borrowingsRouter.get(
   "/",
   catchErrors(async (req, res) => {
-    const borrowingsTotal = await prisma.borrowing.count();
     const borrowings = await prisma.borrowing.findMany({
       orderBy: { borrowingId: "asc" },
     });
     send(res).ok({
-      msg: `Total de prestamos en el historico: ${borrowingsTotal}`,
+      msg: `Total de préstamos en el histórico: ${borrowings.length}`,
       borrowings,
     });
   })
@@ -100,7 +99,7 @@ borrowingsRouter.get(
 
     send(res).ok({
       affiliate: `Socio: ${affiliateId}`,
-      acticeBorrowings: `Total de préstamos activos: ${borrowings.length}`,
+      acticeBorrowings: `Total de préstamos activos del socio con id ${affiliateId}: ${borrowings.length}`,
       borrowings,
     });
   })
@@ -129,12 +128,13 @@ borrowingsRouter.post(
     });
 
     if (available) {
-      //Obtener prestamos por socio
+      //Obtener préstamos por socio
       const data = borrowingBodySchema.parse(req.body);
       const activeBorrowings = await prisma.borrowing.findMany({
         where: { active: true, affiliateId: data.affiliateId },
       });
-      // Un affiliate no puede tener mas de 3 prestamos activos.
+
+      // Un socio no puede tener mas de 3 préstamos activos.
       if (activeBorrowings.length >= 3) {
         return send(res).badRequest(`Affiliate cannot borrow more books.`);
       }
@@ -156,33 +156,41 @@ borrowingsRouter.post(
   })
 );
 
+//Endpoint para devolver libros
 borrowingsRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
     const { id: bookId } = idParamsSchema.parse(req.params);
 
-    //Compruebo que el libro esta en prestamo
+    //Compruebo que el libro esta en préstamo
     const { available } = await prisma.book.findUniqueOrThrow({ where: { bookId } });
 
     if (available) {
       return send(res).badRequest(
-        "El libro no está en prestamo, así que no se puede devolver."
+        "El libro no está en préstamo, así que no se puede devolver."
       );
     }
-    const borrowing = await prisma.borrowing.findFirstOrThrow({
+    const { borrowingId } = await prisma.borrowing.findFirstOrThrow({
       where: { bookId: bookId },
     });
 
+    //Marcamos el préstamo como finalizado
     const updatedBorrowing = await prisma.borrowing.update({
-      where: { borrowingId: borrowing.borrowingId },
+      where: { borrowingId },
       data: { active: false },
     });
 
+    //Marcamos el libro como  disponible
     const updatedBook = await prisma.book.update({
       where: { bookId },
       data: { available: true },
     });
-    send(res).ok("Libro devuelto.");
+
+    send(res).ok({
+      msg: `"Libro devuelto, préstamo finalizado.`,
+      book: updatedBook,
+      borrowing: updatedBorrowing,
+    });
   })
 );
 
