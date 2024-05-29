@@ -18,6 +18,7 @@ const bookBodySchema = z.object({
 
 const searchParamsSchema = z.object({
   authorId: z.coerce.number().optional(),
+  libraryId: z.coerce.number().optional(),
   title: z.string().min(3).max(50).optional(),
 });
 
@@ -44,12 +45,16 @@ booksRouter.get(
 booksRouter.get(
   "/search",
   catchErrors(async (req, res) => {
-    const { authorId, title } = searchParamsSchema.parse(req.query);
+    const { authorId, libraryId, title } = searchParamsSchema.parse(req.query);
 
     let books;
     if (authorId !== undefined) {
       books = await prisma.book.findMany({
         where: { authorId: authorId },
+      });
+    } else if (libraryId !== undefined) {
+      books = await prisma.book.findMany({
+        where: { libraryId: libraryId },
       });
     } else if (title !== undefined) {
       books = await prisma.book.findMany({
