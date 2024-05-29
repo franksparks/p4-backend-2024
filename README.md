@@ -119,7 +119,9 @@ Para lanzar el modelo de datos debemos seguir los siguientes pasos:
 
 - Se podría gestionar el préstamos de libros de bibliotecas que no son la del socio, generando un pedido a otra biblioteca con tales libros.
 
----
+## Proveedor de Base de datos
+
+Se ha configurado [CockroachDB](https://www.prisma.io/docs/guides/database/cockroachdb) como proveedor. Se han efectuado algunos cambios en el esquema de Prisma para poder utilizarlo. Al ser una solución en la nube ya no es necesario el archivo <code>docker-compose.yml</code>.
 
 # Enunciado original
 

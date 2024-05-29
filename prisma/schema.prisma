@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
+  provider = "cockroachdb"
   url      = env("DATABASE_URL")
 }
 
 model Library {
-  libraryId  Int         @id @default(autoincrement())
+  libraryId  Int         @id @default(sequence())
   name       String
   city       String
   address    String
@@ -17,7 +17,7 @@ model Library {
 }
 
 model Book {
-  bookId    Int         @id @default(autoincrement())
+  bookId    Int         @id @default(sequence())
   title     String
   pages     Int
   available Boolean     @default(true)
@@ -30,7 +30,7 @@ model Book {
 
 //Socios de la biblioteca
 model Affiliate {
-  affiliateId Int         @id @default(autoincrement())
+  affiliateId Int         @id @default(sequence())
   name        String
   lastName    String
   email       String
@@ -42,7 +42,7 @@ model Affiliate {
 }
 
 model Author {
-  authorId   Int    @id @default(autoincrement())
+  authorId   Int    @id @default(sequence())
   name       String
   lastName   String
   birthPlace String
@@ -51,7 +51,7 @@ model Author {
 
 //Préstamos de libros
 model Borrowing {
-  borrowingId Int       @id @default(autoincrement())
+  borrowingId Int       @id @default(sequence())
   active      Boolean   @default(true)
   affiliateId Int
   affiliate   Affiliate @relation(fields: [affiliateId], references: [affiliateId])
