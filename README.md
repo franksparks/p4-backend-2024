@@ -90,7 +90,7 @@ Para lanzar el modelo de datos debemos seguir los siguientes pasos:
 - <code>GET</code> <code><b>/borrowings</b></code> Obtiene todas los préstamos de todas las bibliotecas.
 - <code>GET</code> <code><b>/borrowings/active</b></code> Obtiene todas los préstamos activos de todas las bibliotecas.
 - <code>GET</code> <code><b>/borrowings/search</b></code> Permite buscar préstamos según su el libro a socio asociado.
-- <code>GET</code> <code><b>/borrowings/search/active</b></code> Permite buscar préstamos activos según su el libro a socio asociado.
+- <code>GET</code> <code><b>/borrowings/active/search</b></code> Permite buscar préstamos activos según su el libro a socio asociado.
 - <code>GET</code> <code><b>/borrowings/id</b></code> Obtiene un préstamo a partir de su id.
 
 - <code>POST</code> <code><b>/borrowings</b></code> Introduce un nuevo elemento préstamo, si se cumplen las condiciones:
