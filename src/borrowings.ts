@@ -19,11 +19,6 @@ const searchParamsSchema = z.object({
   affiliateId: z.coerce.number().optional(),
 });
 
-const returnBookParamsSchema = z.object({
-  bookId: z.coerce.number().optional(),
-  borrowingId: z.coerce.number().optional(),
-});
-
 borrowingsRouter.get(
   "/",
   catchErrors(async (req, res) => {
@@ -74,7 +69,10 @@ borrowingsRouter.get(
       send(res).notFound();
     }
 
-    send(res).ok({ msg: `Total de prestamos: ${borrowings.length}`, borrowings });
+    send(res).ok({
+      msg: `Total de préstamos del socio ${affiliateId}: ${borrowings.length}`,
+      borrowings,
+    });
   })
 );
 
@@ -100,7 +98,11 @@ borrowingsRouter.get(
       send(res).notFound();
     }
 
-    send(res).ok({ msg: `Total de prestamos: ${borrowings.length}`, borrowings });
+    send(res).ok({
+      affiliate: `Socio: ${affiliateId}`,
+      acticeBorrowings: `Total de préstamos activos: ${borrowings.length}`,
+      borrowings,
+    });
   })
 );
 
@@ -157,12 +159,11 @@ borrowingsRouter.post(
 borrowingsRouter.put(
   "/:id",
   catchErrors(async (req, res) => {
-    const { id: bookId } = idParamsSchema.parse(req.body);
+    const { id: bookId } = idParamsSchema.parse(req.params);
 
     //Compruebo que el libro esta en prestamo
-    const available = await prisma.book.findFirstOrThrow({
-      where: { bookId },
-    });
+    const { available } = await prisma.book.findUniqueOrThrow({ where: { bookId } });
+
     if (available) {
       return send(res).badRequest(
         "El libro no está en prestamo, así que no se puede devolver."
@@ -181,6 +182,7 @@ borrowingsRouter.put(
       where: { bookId },
       data: { available: true },
     });
+    send(res).ok("Libro devuelto.");
   })
 );
 
