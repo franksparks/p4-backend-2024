@@ -1,0 +1,599 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "pr4-backend-2024 - Ferran Bals",
+    "collectionId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+    "dateExported": "2024-05-29T15:18:49.351Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Affiliates",
+            "containerId": "",
+            "created": "2024-05-26T08:10:48.219Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Authors",
+            "containerId": "",
+            "created": "2024-05-26T08:10:55.343Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Books",
+            "containerId": "",
+            "created": "2024-05-26T08:10:36.522Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Borrowings",
+            "containerId": "",
+            "created": "2024-05-26T08:10:43.564Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Libraries",
+            "containerId": "",
+            "created": "2024-05-26T08:10:29.739Z",
+            "sortNum": 80000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "10f48c64-99ca-49b4-8bd9-66924f1ccf93",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Get all libraries",
+            "url": "/libraries",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-26T08:03:29.117Z",
+            "modified": "2024-05-26T09:06:50.820Z",
+            "headers": []
+        },
+        {
+            "_id": "8d61d9d7-7291-45ad-b5a2-0d723ac4811a",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Get all affiliates",
+            "url": "/affiliates",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-26T08:43:51.683Z",
+            "modified": "2024-05-26T09:06:19.869Z",
+            "headers": []
+        },
+        {
+            "_id": "597d6d78-5e3a-42da-81fe-0926c36ca1f2",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Get all authors",
+            "url": "/authors",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-26T14:51:28.090Z",
+            "modified": "2024-05-26T14:51:34.682Z",
+            "headers": []
+        },
+        {
+            "_id": "ae894171-7d59-4572-831b-fe717a0ac4f5",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get all books",
+            "url": "/books",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-26T15:59:43.387Z",
+            "modified": "2024-05-26T15:59:54.262Z",
+            "headers": []
+        },
+        {
+            "_id": "ec063fd8-d194-41b3-abbb-f131d63baee5",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all borrowings",
+            "url": "/borrowings",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-26T16:23:28.724Z",
+            "modified": "2024-05-26T16:23:48.235Z",
+            "headers": []
+        },
+        {
+            "_id": "d1ef14f3-211f-4385-a3ec-fdd92d1c40c7",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Get library by id",
+            "url": "/libraries/2",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-05-26T09:22:19.559Z",
+            "modified": "2024-05-29T15:15:39.404Z",
+            "headers": []
+        },
+        {
+            "_id": "4e3f8fd5-885e-4afc-be53-e30bce1fbe40",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get book by id",
+            "url": "/books/4",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-05-26T16:06:24.635Z",
+            "modified": "2024-05-26T16:57:08.222Z",
+            "headers": []
+        },
+        {
+            "_id": "d563dd45-585e-4958-919b-b01e18bebc9c",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get books by title",
+            "url": "/books/search?title=Mort",
+            "method": "GET",
+            "sortNum": 17500,
+            "created": "2024-05-26T11:38:10.040Z",
+            "modified": "2024-05-26T17:58:25.465Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "title",
+                    "value": "Mort",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "bc7b2e23-6a1e-4ce7-8d93-7e77b9e408d0",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get books by author Id",
+            "url": "/books/search?authorId=2",
+            "method": "GET",
+            "sortNum": 18125,
+            "created": "2024-05-29T08:56:04.322Z",
+            "modified": "2024-05-29T14:33:00.166Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "authorId",
+                    "value": "2",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "248e1d33-5d97-47f7-aee2-e8912702d9ff",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get books by library Id",
+            "url": "/books/search?libraryId=1",
+            "method": "GET",
+            "sortNum": 18437.5,
+            "created": "2024-05-29T08:54:21.518Z",
+            "modified": "2024-05-29T08:56:20.024Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "libraryId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "29435f7a-3947-46df-94e1-ef61e484d00f",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Introduce a book",
+            "url": "/books",
+            "method": "POST",
+            "sortNum": 18750,
+            "created": "2024-05-26T16:09:16.843Z",
+            "modified": "2024-05-26T16:10:31.736Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"New book title\",\n  \"available\": false,\n  \"pages\": 1,\n  \"libraryId\": 2,\n  \"authorId\": 2\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "225f3f33-2054-4830-bc9e-e3faa680ac31",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Get author by id",
+            "url": "/authors/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-05-26T14:56:25.632Z",
+            "modified": "2024-05-26T14:58:32.306Z",
+            "headers": []
+        },
+        {
+            "_id": "6bb3621d-f204-4575-82c7-8d08e8a3b6a5",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Get affiliate by id",
+            "url": "/affiliates/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-05-26T15:40:20.904Z",
+            "modified": "2024-05-29T15:13:01.732Z",
+            "headers": []
+        },
+        {
+            "_id": "2b66f7ed-055f-42de-8d66-5fb0e2dcb536",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Update a book",
+            "url": "/books/15",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-05-26T16:01:40.859Z",
+            "modified": "2024-05-29T14:35:52.314Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"New title\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9cd6e98c-6112-48e3-8c30-3105e3664e87",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get borrowing by id",
+            "url": "/borrowings/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-05-26T16:31:40.468Z",
+            "modified": "2024-05-26T16:32:10.504Z",
+            "headers": []
+        },
+        {
+            "_id": "275b148b-7f3d-43d8-9eef-bc1e588ab283",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Get authors by lastName",
+            "url": "/authors/search?lastName=Asimov",
+            "method": "GET",
+            "sortNum": 21250,
+            "created": "2024-05-26T17:56:53.358Z",
+            "modified": "2024-05-26T17:56:53.358Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "lastName",
+                    "value": "Asimov",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "5ced3dde-85f3-4cbc-bcef-17d59589c521",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Introduce an author",
+            "url": "/authors",
+            "method": "POST",
+            "sortNum": 22500,
+            "created": "2024-05-26T15:05:47.075Z",
+            "modified": "2024-05-29T14:56:35.694Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"MJ1\",\n  \"lastName\": \"LastName\",\n  \"birthPlace\": \"Nowhere, USA\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "fd0e48f3-d4d1-41ef-a35d-0b67551aaae2",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Get affiliates by lastName",
+            "url": "/affiliates/search?lastName=Affiliate 9",
+            "method": "GET",
+            "sortNum": 22500,
+            "created": "2024-05-26T17:48:30.401Z",
+            "modified": "2024-05-29T14:47:23.030Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "lastName",
+                    "value": "Affiliate 9",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "084e33a5-317a-47c4-bfb8-9f7995b16b04",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Update an author",
+            "url": "/authors/1",
+            "method": "PUT",
+            "sortNum": 25000,
+            "created": "2024-05-26T15:27:47.108Z",
+            "modified": "2024-05-26T15:30:25.627Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"New author name\",\n  \"lastName\": \"New author last name\",\n  \"birthPlace\": \"Somewhere, USA\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e9bfe559-31bb-499b-92fb-b2d7afa486f7",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Introduce an affiliate",
+            "url": "/affiliates",
+            "method": "POST",
+            "sortNum": 25000,
+            "created": "2024-05-26T15:46:59.406Z",
+            "modified": "2024-05-26T15:47:41.057Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"New affiliate\",\n  \"lastName\": \"New affiliate last name\",\n  \"email\": \"newmailaddress@mail.com\",\n  \"city\": \"New York city\",\n  \"libraryId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "81d7b6a0-8f8e-42c1-b4bd-ad05c78b3e3e",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Get library by name",
+            "url": "/libraries/search?name=Library",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-05-26T17:10:53.495Z",
+            "modified": "2024-05-29T15:15:51.669Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Library",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "b80e59af-34d7-46a0-b24f-9441575d1b24",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all borrowings by affiliate",
+            "url": "/borrowings/search?affiliateId=1",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-05-26T17:59:15.444Z",
+            "modified": "2024-05-26T18:36:10.957Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "affiliateId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "bd288e58-01f6-4340-8cc9-b2f1765a2132",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Update affiliate ",
+            "url": "/affiliates/11",
+            "method": "PUT",
+            "sortNum": 27500,
+            "created": "2024-05-26T15:42:58.946Z",
+            "modified": "2024-05-29T14:47:37.947Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"New affiliate name\",\n  \"lastName\": \"lastname\",\n  \"email\": \"new@mail.com\",\n  \"city\": \"New city\",\n  \"libraryId\": 3\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3f822be7-c50f-4d17-b351-12c862bfa45d",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Introduce a library",
+            "url": "/libraries",
+            "method": "POST",
+            "sortNum": 27500,
+            "created": "2024-05-26T16:10:52.116Z",
+            "modified": "2024-05-26T16:11:25.998Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"New Library name\",\n  \"city\": \"New Library City\",\n  \"address\": \"New Library Address\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "981e65c1-c320-444c-8253-c26450e40a20",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Update a library",
+            "url": "/libraries/1",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-05-26T11:31:47.287Z",
+            "modified": "2024-05-26T17:36:41.225Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"One\",\n  \"city\": \"New City\",\n  \"address\": \"New Address\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "4a969453-16f3-46f8-8224-b9e9b2587d1f",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
+            "name": "Delete affiliate",
+            "url": "/affiliates/1",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-05-26T15:42:50.689Z",
+            "modified": "2024-05-26T15:42:55.700Z",
+            "headers": []
+        },
+        {
+            "_id": "680e592c-6b15-4540-b2b7-c4a5bd61b679",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Delete a book",
+            "url": "/books/1",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-05-26T16:01:44.756Z",
+            "modified": "2024-05-26T16:02:03.559Z",
+            "headers": []
+        },
+        {
+            "_id": "adda24a2-a0f5-4a11-863b-9c794987a426",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all borrowings by bookId",
+            "url": "/borrowings/search?bookId=1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-05-26T18:37:35.536Z",
+            "modified": "2024-05-26T18:37:35.536Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "bookId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "0a00456d-06d3-42c1-bd08-ad6f3550a4fd",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Delete library",
+            "url": "/libraries/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-05-26T10:52:10.948Z",
+            "modified": "2024-05-26T10:52:15.787Z",
+            "headers": []
+        },
+        {
+            "_id": "c204f0bb-c6b6-4880-9926-e9000a393f66",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "8663efe2-07d3-4212-85ad-4711ff0e08ba",
+            "name": "Delete author",
+            "url": "/libraries/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-05-26T15:27:38.093Z",
+            "modified": "2024-05-26T15:27:38.093Z",
+            "headers": []
+        },
+        {
+            "_id": "5d3d58d9-f6eb-4aff-8c0c-24f0db8145ed",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all active borrowings",
+            "url": "/borrowings/active",
+            "method": "GET",
+            "sortNum": 42500,
+            "created": "2024-05-26T18:30:09.742Z",
+            "modified": "2024-05-26T18:30:21.716Z",
+            "headers": []
+        },
+        {
+            "_id": "978135d5-8b00-4375-859b-179741201bfd",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get active borrowings by affiliate",
+            "url": "/borrowings/active/search?affiliateId=1",
+            "method": "GET",
+            "sortNum": 45000,
+            "created": "2024-05-26T18:37:16.376Z",
+            "modified": "2024-05-26T18:44:26.496Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "affiliateId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "8c7e4021-ad5d-4966-af2f-cf432d41fa58",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get active borrowing by bookId",
+            "url": "/borrowings/active/search?bookId=1",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-05-26T18:36:35.445Z",
+            "modified": "2024-05-26T18:37:48.881Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "bookId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "cc8ac740-b8e6-430f-a347-8778df46bcdd",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Introduce a borrowing",
+            "url": "/borrowings",
+            "method": "POST",
+            "sortNum": 55000,
+            "created": "2024-05-26T16:38:05.217Z",
+            "modified": "2024-05-29T08:15:07.984Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"active\" : true,\n  \"affiliateId\": 1,\n  \"bookId\": 11\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d8d4ba52-3e40-49c3-98b8-9da1f60d703d",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Return book",
+            "url": "/borrowings/1",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2024-05-26T19:11:07.003Z",
+            "modified": "2024-05-29T14:45:23.718Z",
+            "headers": []
+        },
+        {
+            "_id": "876db700-b10a-4ebc-98b5-cfeb52010d67",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Delete borrowing",
+            "url": "/borrowings/1",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2024-05-29T15:16:31.283Z",
+            "modified": "2024-05-29T15:16:50.820Z",
+            "headers": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "http://localhost:8888"
+        }
+    },
+    "ref": "nqvGPzuK6DSXBmmMOHKI8VCEn2u8YX9kOKA2_4gx-VuZ-NroLD3aQAOw8m3e7ANgJ7ahFX2iBkoRlF0sFa7o0w"
+}
