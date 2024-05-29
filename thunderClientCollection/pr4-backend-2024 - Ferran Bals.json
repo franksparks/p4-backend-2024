@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "pr4-backend-2024 - Ferran Bals",
     "collectionId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-    "dateExported": "2024-05-29T08:59:49.192Z",
+    "dateExported": "2024-05-29T15:18:49.351Z",
     "version": "1.2",
     "folders": [
         {
@@ -107,11 +107,11 @@
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
             "name": "Get library by id",
-            "url": "/libraries/1",
+            "url": "/libraries/2",
             "method": "GET",
             "sortNum": 15000,
             "created": "2024-05-26T09:22:19.559Z",
-            "modified": "2024-05-26T15:50:48.370Z",
+            "modified": "2024-05-29T15:15:39.404Z",
             "headers": []
         },
         {
@@ -141,6 +141,44 @@
                 {
                     "name": "title",
                     "value": "Mort",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "bc7b2e23-6a1e-4ce7-8d93-7e77b9e408d0",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get books by author Id",
+            "url": "/books/search?authorId=2",
+            "method": "GET",
+            "sortNum": 18125,
+            "created": "2024-05-29T08:56:04.322Z",
+            "modified": "2024-05-29T14:33:00.166Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "authorId",
+                    "value": "2",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "248e1d33-5d97-47f7-aee2-e8912702d9ff",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
+            "name": "Get books by library Id",
+            "url": "/books/search?libraryId=1",
+            "method": "GET",
+            "sortNum": 18437.5,
+            "created": "2024-05-29T08:54:21.518Z",
+            "modified": "2024-05-29T08:56:20.024Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "libraryId",
+                    "value": "1",
                     "isPath": false
                 }
             ]
@@ -183,7 +221,7 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-05-26T15:40:20.904Z",
-            "modified": "2024-05-26T15:40:56.484Z",
+            "modified": "2024-05-29T15:13:01.732Z",
             "headers": []
         },
         {
@@ -191,15 +229,15 @@
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
             "name": "Update a book",
-            "url": "/books/1",
+            "url": "/books/15",
             "method": "PUT",
             "sortNum": 20000,
             "created": "2024-05-26T16:01:40.859Z",
-            "modified": "2024-05-26T16:08:03.865Z",
+            "modified": "2024-05-29T14:35:52.314Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"New title\",\n  \"available\": false,\n  \"pages\": 1,\n  \"libraryId\": 2,\n  \"authorId\": 2\n}",
+                "raw": "{\n  \"title\": \"New title\"\n}",
                 "form": []
             }
         },
@@ -213,18 +251,6 @@
             "sortNum": 20000,
             "created": "2024-05-26T16:31:40.468Z",
             "modified": "2024-05-26T16:32:10.504Z",
-            "headers": []
-        },
-        {
-            "_id": "5d3d58d9-f6eb-4aff-8c0c-24f0db8145ed",
-            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
-            "name": "Get all active borrowings",
-            "url": "/borrowings/active",
-            "method": "GET",
-            "sortNum": 20000,
-            "created": "2024-05-26T18:30:09.742Z",
-            "modified": "2024-05-26T18:30:21.716Z",
             "headers": []
         },
         {
@@ -255,11 +281,11 @@
             "method": "POST",
             "sortNum": 22500,
             "created": "2024-05-26T15:05:47.075Z",
-            "modified": "2024-05-26T15:26:25.615Z",
+            "modified": "2024-05-29T14:56:35.694Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Author\",\n  \"lastName\": \"LastName\",\n  \"birthPlace\": \"Nowhere, USA\"\n}",
+                "raw": "{\n  \"name\": \"MJ1\",\n  \"lastName\": \"LastName\",\n  \"birthPlace\": \"Nowhere, USA\"\n}",
                 "form": []
             }
         },
@@ -268,16 +294,16 @@
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
             "name": "Get affiliates by lastName",
-            "url": "/affiliates/search?id=2",
+            "url": "/affiliates/search?lastName=Affiliate 9",
             "method": "GET",
             "sortNum": 22500,
             "created": "2024-05-26T17:48:30.401Z",
-            "modified": "2024-05-26T18:12:38.531Z",
+            "modified": "2024-05-29T14:47:23.030Z",
             "headers": [],
             "params": [
                 {
-                    "name": "id",
-                    "value": "2",
+                    "name": "lastName",
+                    "value": "Affiliate 9",
                     "isPath": false
                 }
             ]
@@ -325,7 +351,7 @@
             "method": "GET",
             "sortNum": 25000,
             "created": "2024-05-26T17:10:53.495Z",
-            "modified": "2024-05-26T17:37:21.780Z",
+            "modified": "2024-05-29T15:15:51.669Z",
             "headers": [],
             "params": [
                 {
@@ -336,15 +362,34 @@
             ]
         },
         {
+            "_id": "b80e59af-34d7-46a0-b24f-9441575d1b24",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all borrowings by affiliate",
+            "url": "/borrowings/search?affiliateId=1",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-05-26T17:59:15.444Z",
+            "modified": "2024-05-26T18:36:10.957Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "affiliateId",
+                    "value": "1",
+                    "isPath": false
+                }
+            ]
+        },
+        {
             "_id": "bd288e58-01f6-4340-8cc9-b2f1765a2132",
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "da1bdb84-f2ff-43a8-bea4-87b3bc793190",
             "name": "Update affiliate ",
-            "url": "/affiliates/1",
+            "url": "/affiliates/11",
             "method": "PUT",
             "sortNum": 27500,
             "created": "2024-05-26T15:42:58.946Z",
-            "modified": "2024-05-26T17:54:37.568Z",
+            "modified": "2024-05-29T14:47:37.947Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -353,23 +398,21 @@
             }
         },
         {
-            "_id": "248e1d33-5d97-47f7-aee2-e8912702d9ff",
+            "_id": "3f822be7-c50f-4d17-b351-12c862bfa45d",
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
-            "name": "Get books by library Id",
-            "url": "/books/search?libraryId=1",
-            "method": "GET",
+            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
+            "name": "Introduce a library",
+            "url": "/libraries",
+            "method": "POST",
             "sortNum": 27500,
-            "created": "2024-05-29T08:54:21.518Z",
-            "modified": "2024-05-29T08:56:20.024Z",
+            "created": "2024-05-26T16:10:52.116Z",
+            "modified": "2024-05-26T16:11:25.998Z",
             "headers": [],
-            "params": [
-                {
-                    "name": "libraryId",
-                    "value": "1",
-                    "isPath": false
-                }
-            ]
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"New Library name\",\n  \"city\": \"New Library City\",\n  \"address\": \"New Library Address\"\n}",
+                "form": []
+            }
         },
         {
             "_id": "981e65c1-c320-444c-8253-c26450e40a20",
@@ -413,19 +456,19 @@
             "headers": []
         },
         {
-            "_id": "bc7b2e23-6a1e-4ce7-8d93-7e77b9e408d0",
+            "_id": "adda24a2-a0f5-4a11-863b-9c794987a426",
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-            "containerId": "97bd3e9d-e5dd-4999-965d-f4c412abe84c",
-            "name": "Get books by author Id Copy",
-            "url": "/books/search?authorId=1",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Get all borrowings by bookId",
+            "url": "/borrowings/search?bookId=1",
             "method": "GET",
-            "sortNum": 37500,
-            "created": "2024-05-29T08:56:04.322Z",
-            "modified": "2024-05-29T08:56:04.322Z",
+            "sortNum": 30000,
+            "created": "2024-05-26T18:37:35.536Z",
+            "modified": "2024-05-26T18:37:35.536Z",
             "headers": [],
             "params": [
                 {
-                    "name": "authorId",
+                    "name": "bookId",
                     "value": "1",
                     "isPath": false
                 }
@@ -456,40 +499,16 @@
             "headers": []
         },
         {
-            "_id": "3f822be7-c50f-4d17-b351-12c862bfa45d",
-            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-            "containerId": "99b60002-7b84-4cb3-ad5e-5276fdacf4cb",
-            "name": "Introduce a library",
-            "url": "/libraries",
-            "method": "POST",
-            "sortNum": 40000,
-            "created": "2024-05-26T16:10:52.116Z",
-            "modified": "2024-05-26T16:11:25.998Z",
-            "headers": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"name\" : \"New Library name\",\n  \"city\": \"New Library City\",\n  \"address\": \"New Library Address\"\n}",
-                "form": []
-            }
-        },
-        {
-            "_id": "b80e59af-34d7-46a0-b24f-9441575d1b24",
+            "_id": "5d3d58d9-f6eb-4aff-8c0c-24f0db8145ed",
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
-            "name": "Get borrowings by affiliate",
-            "url": "/borrowings/search?affiliateId=1",
+            "name": "Get all active borrowings",
+            "url": "/borrowings/active",
             "method": "GET",
-            "sortNum": 40000,
-            "created": "2024-05-26T17:59:15.444Z",
-            "modified": "2024-05-26T18:36:10.957Z",
-            "headers": [],
-            "params": [
-                {
-                    "name": "affiliateId",
-                    "value": "1",
-                    "isPath": false
-                }
-            ]
+            "sortNum": 42500,
+            "created": "2024-05-26T18:30:09.742Z",
+            "modified": "2024-05-26T18:30:21.716Z",
+            "headers": []
         },
         {
             "_id": "978135d5-8b00-4375-859b-179741201bfd",
@@ -514,31 +533,12 @@
             "_id": "8c7e4021-ad5d-4966-af2f-cf432d41fa58",
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
-            "name": "Get borrowings by bookId",
+            "name": "Get active borrowing by bookId",
             "url": "/borrowings/active/search?bookId=1",
             "method": "GET",
             "sortNum": 50000,
             "created": "2024-05-26T18:36:35.445Z",
             "modified": "2024-05-26T18:37:48.881Z",
-            "headers": [],
-            "params": [
-                {
-                    "name": "bookId",
-                    "value": "1",
-                    "isPath": false
-                }
-            ]
-        },
-        {
-            "_id": "adda24a2-a0f5-4a11-863b-9c794987a426",
-            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
-            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
-            "name": "Get active borrowing by bookId",
-            "url": "/borrowings/search?bookId=1",
-            "method": "GET",
-            "sortNum": 50000,
-            "created": "2024-05-26T18:37:35.536Z",
-            "modified": "2024-05-26T18:37:35.536Z",
             "headers": [],
             "params": [
                 {
@@ -570,11 +570,23 @@
             "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
             "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
             "name": "Return book",
-            "url": "/borrowings/5",
+            "url": "/borrowings/1",
             "method": "PUT",
             "sortNum": 60000,
             "created": "2024-05-26T19:11:07.003Z",
-            "modified": "2024-05-29T08:36:40.606Z",
+            "modified": "2024-05-29T14:45:23.718Z",
+            "headers": []
+        },
+        {
+            "_id": "876db700-b10a-4ebc-98b5-cfeb52010d67",
+            "colId": "eb4ea181-fc6f-4d32-8b22-5a52ed77f5b7",
+            "containerId": "a1be5573-5f95-4c33-83ec-ea59fcb3b7c2",
+            "name": "Delete borrowing",
+            "url": "/borrowings/1",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2024-05-29T15:16:31.283Z",
+            "modified": "2024-05-29T15:16:50.820Z",
             "headers": []
         }
     ],
@@ -583,5 +595,5 @@
             "baseUrl": "http://localhost:8888"
         }
     },
-    "ref": "nqvGPzuK6DSXBmmMOHKI8TX6A-drxWkuRWevroH7nx1LvYqSk9YAaM-rESlpunuRFhuNqbEL1hiZYkOI68LvQw"
+    "ref": "nqvGPzuK6DSXBmmMOHKI8VCEn2u8YX9kOKA2_4gx-VuZ-NroLD3aQAOw8m3e7ANgJ7ahFX2iBkoRlF0sFa7o0w"
 }
